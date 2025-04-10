@@ -1,5 +1,5 @@
 ---
-title: "Using_miscPredict_for_evaluating_properties_of_protein_signatures"
+title: "Using_miscClassify_for_evaluating_properties_of_protein_signatures"
 author: "Dirk F Moore"
 date: "`r Sys.Date()`"
 output:
@@ -11,7 +11,7 @@ output:
   pdf_document:
     toc: true
 vignette: |
-  %\VignetteIndexEntry{Using_miscPredict_for_evaluating_properties_of_protein_signatures}
+  %\VignetteIndexEntry{Using_miscClassify_for_evaluating_properties_of_protein_signatures}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
@@ -36,8 +36,8 @@ knitr::opts_chunk$set(
 
 # 1. Introduction
 
-This vignette provides a guide to using the 'miscPredict' package to 
-build a prediction model using a proposed protein signature and evaluate the
+This vignette provides a guide to using the 'miscClassify' package to 
+build a classification model using a proposed protein signature and evaluate the
 predictive accuracy of that model. This vignette requires
 a current version of the R programming system, and it is recommended
 that you use the RStudio interface to R. Both are available for free at,
@@ -73,7 +73,7 @@ includes overall error, sensitivity, specificity, and area under the ROC curve
 
 Disclaimer: This package is for research use only.
 
-# 2. Preparing the R system to run the 'miscPredict' package.
+# 2. Preparing the R system to run the 'miscClassify' package.
 The 'miscPredict' package requires that you first download and
 install several supporting
 packages if you haven't previously installed them. Do this using the
@@ -83,16 +83,16 @@ packages if you haven't previously installed them. Do this using the
 install.packages(c("e1071", "pROC", "crossval"))
 ```
 
-Furthermore, to use the 'miscPredict' package, you must first download 
+Furthermore, to use the 'miscClassify' package, you must first download 
 and install the
-'devtools' package and then, from github, the 'miscPredict' package:
+'devtools' package and then, from github, the 'miscClassify' package:
 
 ```
 install.packages("devtools")
-devtools::install_github("mooredf22/miscPredict")
+devtools::install_github("mooredf22/miscClassify")
 ```
 
-Next, attach the 'miscPredict' package and the associated data of 
+Next, attach the 'miscClassify' package and the associated data of 
 log2-transformed protein abundance levels, and show the first five
 rows and selected columns (1, 2, 20, 21, 33, 34, 50 and 51) of the data frame. 
 The column names consist of sample type
@@ -103,7 +103,8 @@ The values shown
 are log2 transformed abundance levels.
 
 ```{r, echo=TRUE}
-library(miscPredict)
+library(miscClassify)
+library(miscClassify)
 data(logMISCdata)
 round(logMISCdata[1:5,c(1:2, 20:21,33:34,50:51 )], digits=2)
 ```
@@ -157,7 +158,7 @@ table(grpInd)
 
 Finally, the 'predictSignature' function uses the signature to
 fit a support vector machine 
-prediction model and evaluate its predictive accuracy.
+prediction model and evaluate its predictive (classification) accuracy.
 We illustrate using geneSet2. A key measure of accuracy is
 area under the curve (AUC), obtained as follows:
 

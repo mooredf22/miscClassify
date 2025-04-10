@@ -1,5 +1,5 @@
 Package: miscClassify
-Title: Build and evaluate a prediction model to distinguish MIS-C from other diseases
+Title: Build and evaluate a classification model to distinguish MIS-C from other diseases
 Version: 0.1.0
 Authors@R: 
     person("Dirk", "Moore", , "dirk.moore@rutgers.edu", role = c("aut", "cre"))

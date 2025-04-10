@@ -22,8 +22,6 @@ predictSignature(
 \item{log2out}{log2 transformed data frame of protein abundances}
 
 \item{cv}{if this is true, calculate cross-validation error rates}
-
-\item{rocPlot}{if this is true, show an ROC plot}
 }
 \value{
 result a dataframe with properties of the predictive model
