@@ -236,7 +236,7 @@ pred.Set.Nygaard$out.auc
 ```
 
 ```{r, echo=TRUE}
-set.seed(340863)
+set.seed(193392)
 pred.Set.Yeoh <- predictSignature(genesUse=geneSetYeoh, 
                         geneNames=geneList, grpInd=grpInd, 
                         log2out=logMISCdata, cv=FALSE)
