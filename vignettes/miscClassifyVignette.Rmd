@@ -243,7 +243,7 @@ patients diagnosed with MIS-C. It may be viewed as follows:
 
 ```{r, echo=TRUE}
 data(logMISCdataTrain)
-str(logMISCdataTrain)
+round(logMISCdataTrain[1:5,c(1,2,3,36,37)], digits=3)
 ```
 
 # References
