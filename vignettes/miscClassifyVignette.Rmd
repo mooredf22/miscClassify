@@ -3,13 +3,13 @@ title: "Using_miscClassify_for_evaluating_properties_of_protein_signatures"
 author: "Dirk F Moore"
 date: "`r Sys.Date()`"
 output:
-  #word_document:
-  #  toc: true
+  word_document:
+    toc: true
+  pdf_document:
+    toc: true
   html_document:
     toc: true
     df_print: paged
-  pdf_document:
-    toc: true
 vignette: |
   %\VignetteIndexEntry{Using_miscClassify_for_evaluating_properties_of_protein_signatures}
   %\VignetteEngine{knitr::rmarkdown}
@@ -105,15 +105,15 @@ are log2 transformed abundance levels.
 ```{r, echo=TRUE}
 
 library(miscClassify)
-data(logMISCdataValidate)
-round(logMISCdataValidate[1:5,c(1:2, 20:21,33:34,50:51 )], digits=2) 
+data(logMISCdata)
+round(logMISCdata[1:5,c(1:2, 20:21,33:34,50:51 )], digits=2) 
 ```
 
 Finally, we extract the list
 of gene names corresponding to the proteins, and list the first five.
 
 ```{r, echo=TRUE}
-geneList <- matrix(unlist(strsplit(x=rownames(logMISCdataValidate), split ="_")),
+geneList <- matrix(unlist(strsplit(x=rownames(logMISCdata), split ="_")),
                    ncol=2, byrow=TRUE)[,1]
 head(geneList)
 ```
@@ -139,7 +139,7 @@ corresponding to MIS-C and the other samples (Kawasaki, pneumonia, and
 asymptomatic). Here is the distribution of the four sample groups:
 
 ```{r, echo=TRUE}
-grpIndUse <- matrix(unlist(strsplit(x=names(logMISCdataValidate), split="[.]")),
+grpIndUse <- matrix(unlist(strsplit(x=names(logMISCdata), split="[.]")),
                     ncol=2, byrow=TRUE)[,1]
 table(grpIndUse)
 ```
@@ -165,7 +165,7 @@ area under the curve (AUC), obtained as follows:
 ```{r, echo=TRUE}
 set.seed(424020)
 pred.Set2 <- predictSignature(genesUse=geneSet2, geneNames=geneList,
-                           grpInd=grpInd, log2out=logMISCdataValidate, cv=TRUE)
+                           grpInd=grpInd, log2out=logMISCdata, cv=TRUE)
 ```
 
 The output data structure 'pred.Set2' contains a number of components relevant
@@ -229,7 +229,7 @@ in 'geneSetNygaard'
 set.seed(340863)
 pred.Set.Nygaard <- predictSignature(genesUse=geneSetNygaard, 
                         geneNames=geneList, grpInd=grpInd, 
-                        log2out=logMISCdataValidate, cv=TRUE)
+                        log2out=logMISCdata, cv=TRUE)
 pred.Set.Nygaard$out.auc
 ```
 

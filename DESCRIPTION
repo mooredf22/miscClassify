@@ -1,6 +1,6 @@
 Package: miscClassify
 Title: Build and evaluate a classification model to distinguish MIS-C from other diseases
-Version: 0.1.0
+Version: 0.5.0
 Authors@R: 
     person("Dirk", "Moore", , "dirk.moore@rutgers.edu", role = c("aut", "cre"))
 Description: The 'miscClassify' package takes a proposed protein signature, 
@@ -24,6 +24,7 @@ Imports:
     stats,
     rmarkdown,
     utils
+LazyData: true
 VignetteBuilder: knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
