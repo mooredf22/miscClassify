@@ -221,6 +221,8 @@ may be obtained thus:
 pred.Set2$out.cv
 ```
 
+to 
+
 
 The properties of Nygaard's signature may be obtained by substituting 
 in 'geneSetNygaard'
@@ -231,6 +233,14 @@ pred.Set.Nygaard <- predictSignature(genesUse=geneSetNygaard,
                         geneNames=geneList, grpInd=grpInd, 
                         log2out=logMISCdata, cv=TRUE)
 pred.Set.Nygaard$out.auc
+```
+
+```{r, echo=TRUE}
+set.seed(340863)
+pred.Set.Yeoh <- predictSignature(genesUse=geneSetYeoh, 
+                        geneNames=geneList, grpInd=grpInd, 
+                        log2out=logMISCdata, cv=FALSE)
+pred.Set.Yeoh$out.auc
 ```
 
 Additional properties may be obtained by entering 'pred.Set.Nygaard$out.svm' 
