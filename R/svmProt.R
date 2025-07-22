@@ -7,7 +7,7 @@
 #' @import pROC
 #' @import crossval
 #' @export
-svmProt <- function(xx, yy) {
+svmProt <- function(xx, yy, kernel="radial", degree=3) {
   # xx is a matrix of samples with columns indicating protein signature names
   # yy is a factor variable of 1's and 0's
   # now set up for svm:
@@ -20,7 +20,8 @@ svmProt <- function(xx, yy) {
 
   #model.orig <- svm(y.orig.f ~ ., probability=TRUE, data=x.orig)
   #browser()
-  model.orig <- svm(y.orig ~ ., probability=TRUE, cross=5, data=x.orig)
+  model.orig <- svm(y.orig ~ ., probability=TRUE, cross=5, data=x.orig,
+                    kernel=kernel, degree=3)
   accuracy <- model.orig$tot.accuracy
   pred <- predict(model.orig, newdata=x.orig, decision.values = FALSE, probability = TRUE)
 

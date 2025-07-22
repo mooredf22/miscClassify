@@ -11,7 +11,8 @@
 
 predictSignature <-
   function(genesUse=genesUse, geneNames=geneNames, grpInd,
-           log2out=log2out, cv=TRUE) {
+           log2out=log2out, cv=TRUE,
+           kernel="linear", degree=3) {
 
     grpselect <- {geneNames %in% genesUse}
 
@@ -58,7 +59,7 @@ predictSignature <-
     yy <- as.factor(grpIndUse)
 
 
-    out.svm <- svmProt(xx=xxAll, yy=yy)
+    out.svm <- svmProt(xx=xxAll, yy=yy, kernel="linear", degree=degree)
     #library(crossval)
     cv.out <- NULL
     out.cv <- NULL

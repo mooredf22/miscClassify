@@ -64,7 +64,7 @@ from two previously published papers and evaluate their properties using
 our data. In addition, the package described here allows users to
 input their own protein signatures to see how well they work using our data.
 
-The 'miscPredict' package takes a proposed protein signature, produces a
+The 'miscClassify' package takes a proposed protein signature, produces a
 predictive model using the support vector machine method, and evaluates 
 the resulting model's ability to distinguish MIS-C from the other 
 disease types. The evaluation
@@ -103,17 +103,17 @@ The values shown
 are log2 transformed abundance levels.
 
 ```{r, echo=TRUE}
+
 library(miscClassify)
-library(miscClassify)
-data(logMISCdata)
-round(logMISCdata[1:5,c(1:2, 20:21,33:34,50:51 )], digits=2)
+data(logMISCdataValidate)
+round(logMISCdataValidate[1:5,c(1:2, 20:21,33:34,50:51 )], digits=2) 
 ```
 
 Finally, we extract the list
 of gene names corresponding to the proteins, and list the first five.
 
 ```{r, echo=TRUE}
-geneList <- matrix(unlist(strsplit(x=rownames(logMISCdata), split ="_")),
+geneList <- matrix(unlist(strsplit(x=rownames(logMISCdataValidate), split ="_")),
                    ncol=2, byrow=TRUE)[,1]
 head(geneList)
 ```
@@ -139,7 +139,7 @@ corresponding to MIS-C and the other samples (Kawasaki, pneumonia, and
 asymptomatic). Here is the distribution of the four sample groups:
 
 ```{r, echo=TRUE}
-grpIndUse <- matrix(unlist(strsplit(x=names(logMISCdata), split="[.]")),
+grpIndUse <- matrix(unlist(strsplit(x=names(logMISCdataValidate), split="[.]")),
                     ncol=2, byrow=TRUE)[,1]
 table(grpIndUse)
 ```
@@ -165,7 +165,7 @@ area under the curve (AUC), obtained as follows:
 ```{r, echo=TRUE}
 set.seed(424020)
 pred.Set2 <- predictSignature(genesUse=geneSet2, geneNames=geneList,
-                           grpInd=grpInd, log2out=logMISCdata, cv=TRUE)
+                           grpInd=grpInd, log2out=logMISCdataValidate, cv=TRUE)
 ```
 
 The output data structure 'pred.Set2' contains a number of components relevant
@@ -229,14 +229,22 @@ in 'geneSetNygaard'
 set.seed(340863)
 pred.Set.Nygaard <- predictSignature(genesUse=geneSetNygaard, 
                         geneNames=geneList, grpInd=grpInd, 
-                        log2out=logMISCdata, cv=TRUE)
+                        log2out=logMISCdataValidate, cv=TRUE)
 pred.Set.Nygaard$out.auc
 ```
 
 Additional properties may be obtained by entering 'pred.Set.Nygaard$out.svm' 
 and 'pred.Set.Nygaard$out.cv' as described above. 
 
+# Training data
 
+The training data consist of 20 mild/asymptomatic patients and 17
+patients diagnosed with MIS-C. It may be viewed as follows:
+
+```{r, echo=TRUE}
+data(logMISCdataTrain)
+str(logMISCdataTrain)
+```
 
 # References
 

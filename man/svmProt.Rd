@@ -4,7 +4,7 @@
 \alias{svmProt}
 \title{create svm model to predict yy from xx and report the properties}
 \usage{
-svmProt(xx, yy)
+svmProt(xx, yy, kernel = "radial", degree = 3)
 }
 \arguments{
 \item{xx}{data frame of data}

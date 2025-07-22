@@ -9,7 +9,9 @@ predictSignature(
   geneNames = geneNames,
   grpInd,
   log2out = log2out,
-  cv = TRUE
+  cv = TRUE,
+  kernel = "linear",
+  degree = 3
 )
 }
 \arguments{
